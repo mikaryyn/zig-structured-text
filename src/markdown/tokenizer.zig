@@ -79,11 +79,11 @@ pub const TxtByteReader = struct {
 pub const TxtTokenizer = struct {
     br: *TxtByteReader,
 
-    fn is_sep(b: u8) bool {
+    fn isSep(b: u8) bool {
         return b == ' ' or b == '\t' or b == '\n' or b == '\r';
     }
 
-    fn utf8_advance(expected: *u8, b: u8) bool {
+    fn utf8Advance(expected: *u8, b: u8) bool {
         if (expected.* == 0) {
             if (b < 0x80) return true;
             if (b >= 0xC2 and b <= 0xDF) {
@@ -178,10 +178,10 @@ pub const TxtTokenizer = struct {
             const maybe_b = try self.br.peek();
             if (maybe_b == null) break;
             const b = maybe_b.?;
-            if (is_sep(b)) break;
+            if (isSep(b)) break;
             _ = try self.br.get();
 
-            if (!utf8_advance(&expected_cont, b)) {
+            if (!utf8Advance(&expected_cont, b)) {
                 return TokenizerError.InvalidUtf8;
             }
 

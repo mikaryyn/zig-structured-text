@@ -57,6 +57,10 @@ const st = @import("structured_text");
 zig build test
 ```
 
+## Naming conventions (Zig)
+
+Use `lowerCamelCase` for all functions, except functions that return a type (Zig), which use `PascalCase`.
+
 ## API overview (current)
 
 ### Markdown
